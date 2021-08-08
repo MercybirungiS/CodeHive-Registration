@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.codehiverregistration.CoursesViewHolder
 import com.example.codehiverregistration.R
 import com.example.codehiverregistration.models.CourseResponse
 
@@ -47,7 +46,7 @@ class CoursesResponseViewHolder(itemView: View): RecyclerView.ViewHolder(itemVie
     var tvCourseId=itemView.findViewById<TextView>(R.id.tvCourseId)
     var tvcoursename=itemView.findViewById<TextView>(R.id.tvCourseNameR)
     var tvCourseCode=itemView.findViewById<TextView>(R.id.tvCourseCodeR)
-    var description=itemView.findViewById<TextView>(R.id.tvDescription)
+    var description=itemView.findViewById<TextView>(R.id.tvDescriptionR)
     var tvInstructor=itemView.findViewById<TextView>(R.id.tvInstructorR)
 }
 

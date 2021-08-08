@@ -8,27 +8,32 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.codehiverregistration.R
 import com.example.codehiverregistration.databinding.ActivityCoursesBinding
+import com.example.codehiverregistration.databinding.ActivityCoursesResponseBinding
 import com.example.codehiverregistration.models.CourseResponse
 import com.example.codehiverregistration.viewmodel.CoursesViewModel
 
 class CoursesResponseActivity : AppCompatActivity() {
-    lateinit var binding:ActivityCoursesBinding
+    lateinit var binding:ActivityCoursesResponseBinding
     val courseViewModel:CoursesViewModel by viewModels()
 
-    lateinit var sharedPreferences: SharedPreferences
+//    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-      sharedPreferences =getSharedPreferences("CODEHIVE_REG_PTRFS", Context.MODE_PRIVATE)
+        setContentView(R.layout.activity_courses_response)
 
+   binding= ActivityCoursesResponseBinding.inflate(layoutInflater)
+    setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
-        var
-    }
+        courseViewModel.courseLiveData.observe(this,{courseResponse->
 
+        })
+    }
 }
+//      sharedPreferences =getSharedPreferences("CODEHIVE_REG_PTRFS", Context.MODE_PRIVATE)
+
 
 //    override fun onResume() {
 //        super.onResume()
