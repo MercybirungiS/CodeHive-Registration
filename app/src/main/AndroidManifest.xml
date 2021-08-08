@@ -12,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CodehiveRregistration">
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".CoursesActivity"
-            android:parentActivityName=".LoginActivity"/>
-        <activity android:name=".MainActivity">
+            android:name=".ui.CoursesResponseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
+            android:name=".ui.CoursesActivity"
+            android:parentActivityName=".ui.LoginActivity" />
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
