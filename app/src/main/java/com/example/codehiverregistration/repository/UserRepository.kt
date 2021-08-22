@@ -17,14 +17,13 @@ class UserRepository {
 //     withContext(Dispatchers.IO){
 //                return@withContext apiInterface.registerStudent(registrationRequest)
 //            }
-suspend fun registerUser(registrationRequest: RegistrationRequest):
-        Response<RegistrationResponse> =
+
+suspend fun registerUser(registrationRequest: RegistrationRequest): Response<RegistrationResponse> = //inline function
     withContext(Dispatchers.IO) {
-        var response = apiInterface.registerStudent(registrationRequest)
+        var response = apiInterface.registerStudent(registrationRequest) //triggers api call
         return@withContext response
 }
-suspend fun loginUser(loginRequest: LoginRequest):
-        Response<LoginResponse> =
+suspend fun loginUser(loginRequest: LoginRequest): Response<LoginResponse> =
     withContext(Dispatchers.IO) {
         var response = apiInterface.loginStudent(loginRequest)
         return@withContext response

@@ -17,9 +17,9 @@
         <activity
             android:name=".ui.LoginActivity"
             android:parentActivityName=".ui.MainActivity" />
-        <activity
-            android:name=".ui.CoursesActivity"
-            android:parentActivityName=".ui.LoginActivity" />
+<!--        <activity-->
+<!--            android:name=".ui.CoursesActivity"-->
+<!--            android:parentActivityName=".ui.LoginActivity" />-->
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

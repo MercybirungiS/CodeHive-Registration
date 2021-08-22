@@ -14,5 +14,7 @@ interface ApiInterface {
     @POST("/students/login")
     suspend fun loginStudent(@Body loginRequest:LoginRequest):Response<LoginResponse>
     @GET("/courses")
-    suspend fun courseResponse(@Header ("Authorization") token: CourseResponse):Response<List<CourseResponse>>
+    suspend fun getCourses(@Header ("Authorization") token: String):Response<List<CourseResponse>>
+    @POST("enrolments")
+    suspend fun getEnrolment(@Header("Authorization")token: String):Response<EnrollmentResponse>
 }

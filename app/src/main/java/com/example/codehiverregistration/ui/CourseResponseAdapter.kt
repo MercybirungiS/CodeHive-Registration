@@ -17,11 +17,7 @@ class CoursesResponseAdapter(var courseList: List<CourseResponse>) :RecyclerView
 
     override fun onBindViewHolder(holder: CoursesResponseViewHolder, position: Int) {
         var currentCourseResponse = courseList.get(position)
-         holder.tvdateCreated.text=currentCourseResponse.date_created
-        holder.tvdateUpdated.text=currentCourseResponse.date_updated
-        holder.tvCreatedBy.text=currentCourseResponse.created_by
-        holder.tvUpdatedBy.text=currentCourseResponse.updated_by
-        holder.tvActive.text=currentCourseResponse.active.toString()
+
         holder.tvCourseId.text=currentCourseResponse.course_id
         holder.tvcoursename.text=currentCourseResponse.course_name
         holder.description.text=currentCourseResponse.description
@@ -38,14 +34,10 @@ class CoursesResponseAdapter(var courseList: List<CourseResponse>) :RecyclerView
 }
 
 class CoursesResponseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-    var tvdateCreated = itemView.findViewById<TextView>(R.id.tvDateCreated)
-    var tvdateUpdated = itemView.findViewById<TextView>(R.id.tvDateUpdated)
-    var tvCreatedBy = itemView.findViewById<TextView>(R.id.tvCreatedBy)
-    var tvUpdatedBy = itemView.findViewById<TextView>(R.id.tvUpdatedBy)
-    var tvActive=itemView.findViewById<TextView>(R.id.tvActive)
-    var tvCourseId=itemView.findViewById<TextView>(R.id.tvCourseId)
+
+    var tvCourseId=itemView.findViewById<TextView>(R.id.tvCourseCode)
     var tvcoursename=itemView.findViewById<TextView>(R.id.tvCourseNameR)
-    var tvCourseCode=itemView.findViewById<TextView>(R.id.tvCourseCodeR)
+    var tvCourseCode=itemView.findViewById<TextView>(R.id.tvCourseCode)
     var description=itemView.findViewById<TextView>(R.id.tvDescriptionR)
     var tvInstructor=itemView.findViewById<TextView>(R.id.tvInstructorR)
 }

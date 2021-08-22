@@ -1,15 +1,25 @@
 package com.example.codehiverregistration.models
+//
+//import android.content.Context
+//import android.content.SharedPreferences
+//import com.example.codehiverregistration.R
+//
+//class SessionManager(context: Any) {
+//    private var prefs: SharedPreferences = context.getSharedPreferences(context.getstring(R.string.app_name), Context.MODE_PRIVATE)
 
-import android.content.Context
-import android.content.SharedPreferences
 
-class SessionManager (context:Context){
-    var sharedPreferences:SharedPreferences=context.getSharedPreferences("CODE_HIVE_PREFS",Context.MODE_PRIVATE)
-    fun saveAccToken(token:String){
-        sharedPreferences.edit().putString("ACCESS_TOKEN",token).apply()
-
-    }
-    fun fetchAccToken():String?{
-        return sharedPreferences.getString("ACCESS_TOKEN","")
-    }
-}
+//    companion object {
+//        const val USER_TOKEN = "ACCESS_TOKEN"
+//    }
+//
+//    fun saveAuthentication(token: String) {
+//        val editor = prefs.edit()
+//        editor.putString(USER_TOKEN, token)
+//        editor.apply()
+//    }
+//
+//    fun fetchAuthentication(): String? {
+//        return prefs.getString(USER_TOKEN, null)
+//    }
+//}
+//}

@@ -25,43 +25,80 @@ import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 
-   lateinit var binding: ActivityLoginBinding
-   val loginViewModel:LoginViewModel by viewModels()
+    lateinit var binding: ActivityLoginBinding
+    val loginViewModel: LoginViewModel by viewModels()
     lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        sharedPreferences =getSharedPreferences("CODEHIVE_REG_PTRFS",Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(Constant.SHAREDPREFS, Context.MODE_PRIVATE)
         binding.btnLogin.setOnClickListener {
-            var loginRequest=LoginRequest(binding.etEmailLogin.text.toString(),
-                binding.etPasswordLogin.text.toString())
+            var loginRequest = LoginRequest(
+                binding.etEmailLogin.text.toString(),
+                binding.etPasswordLogin.text.toString()
+            )
             loginViewModel.logIn(loginRequest)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        loginViewModel.loginLiveData.observe(this, { logInResponse->
+        binding.btnLogin.setOnClickListener {
+            binding.tvLoginError.visibility = View.GONE
+            validateLogIn()
+
+        }
+        loginViewModel.loginLiveData.observe(this, { logInResponse ->
+            binding.progressBar.visibility = View.GONE
             Toast.makeText(baseContext, logInResponse.message, Toast.LENGTH_LONG).show()
-
-            var accessToken = logInResponse.token
-            sharedPreferences.edit().putString("ACCESS_TOKEN", accessToken).apply()
-
-            var x = sharedPreferences.getString("ACCESS_TOKEN", "")
+//            var accessToken = logInResponse.accessToken
+            var editor = sharedPreferences.edit()
+            sharedPreferences.edit().putString(Constant.ACCESS_TOKEN, logInResponse.token).apply()
+            editor.putString(Constant.ACCESS_TOKEN, logInResponse.token)
+            editor.putString(Constant.STUDENTID, logInResponse.student_id)
+            editor.apply()
+            //create a session manager
+            //figure out how to add a log out - remove the session manager
+//            var x = sharedPreferences.getString("ACCESS_TOKEN", "")
+            sharedPreferences.edit().putString(Constant.ACCESS_TOKEN,logInResponse.token).apply()
+            startActivity(Intent(baseContext, CoursesResponseActivity::class.java))
         })
 
-        loginViewModel.loginFailLiveData.observe(this, {error->
-            Toast.makeText(baseContext, error, Toast.LENGTH_LONG).show()
-            binding.tvLoginError.visibility=View.VISIBLE
+        loginViewModel.loginFailLiveData.observe(this, { error ->
+            binding.progressBar.visibility=View.GONE
+            binding.tvLoginError.visibility = View.VISIBLE
             binding.tvLoginError.text = error
+            Toast.makeText(baseContext, error, Toast.LENGTH_LONG).show()
+
         })
     }
+
+
+    fun validateLogIn() {
+        var email = binding.etEmailLogin.text.toString()
+        var password = binding.etPasswordLogin.text.toString()
+        var error = false
+
+        if (email.isBlank() || email.isEmpty()) {
+            var error = true
+            binding.etEmailLogin.setError("Email is required")
+        }
+        if (password.isBlank() || password.isEmpty()) {
+            var error = true
+            binding.etEmailLogin.setError("Password is required")
+        }
+        if (!error) {
+            binding.progressBar.visibility = View.GONE
+        }
+        var loginRequest=LoginRequest(
+            email=email,
+            password=password
+        )
+    }
 }
-
-
-//            var loginRequest = LoginRequest(
-//
-//                email = email,
+//               il,
 //                password = password
 //            )}}}
 //
